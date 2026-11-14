@@ -1,217 +1,284 @@
 # FaithfulMed: A Multi-Agent System for Faithful, Patient-Friendly Medical Explanations
 
-**Break Through Tech AI Studio | Google | Fall 2026**
+### Break Through Tech AI Studio × Google | Fall 2026
 
-**My Role:** AI Fellow — Data Exploration, Verifier Agent Development, Baseline Pipeline Development, and Ablation Study
+**Project Status:** In Progress
+
+**My Role:** Break Through Tech AI Fellow — Data Exploration, Verifier Agent Development, Baseline Pipeline Development, and Ablation Study
 
 **Original Team Repository:** [FaithfulMed — Google 2E](https://github.com/Break-Through-Tech/Google-2E-faithfulmed-a-multi-agent-system-for-faithful-patient-friendly-medical-explanations)
 
+---
+
 ## Project Overview
 
-Medical information is often written in technical language that can be difficult for patients to understand. Clinical notes, lab reports, and discharge instructions frequently contain specialized terminology that creates barriers to health literacy.
+Medical information is often written in complex language that can be difficult for patients to understand. Clinical notes, lab reports, and discharge instructions frequently contain specialized terminology that creates barriers to health literacy.
 
-Large language models (LLMs) offer opportunities to make this information more accessible. However, simplifying medical text using generative AI introduces an important challenge: ensuring that the generated explanations remain faithful to the original medical information without adding unsupported or potentially misleading claims.
+Large language models (LLMs) offer opportunities to make medical information more accessible. However, AI-generated explanations can introduce unsupported claims, omit important clinical details, or change the meaning of the original information.
 
-**FaithfulMed** is a collaborative Break Through Tech AI Studio project in partnership with Google that explores a multi-agent LLM architecture for generating patient-friendly medical explanations.
+**FaithfulMed** is a collaborative project developed through Break Through Tech AI Studio in partnership with Google. The project explores whether a multi-agent AI system can generate medical explanations that are both easy for patients to understand and faithful to the original clinical information.
 
-The project combines specialized AI agents, retrieval-augmented generation (RAG), source-grounded verification, and iterative refinement to investigate how medical explanations can become easier to understand while maintaining factual accuracy.
+The proposed approach combines specialized AI agents, retrieval-augmented generation (RAG), source-grounded verification, and iterative refinement to improve the reliability and accessibility of AI-generated medical explanations.
 
 ### Core Research Question
 
-> Does a pipeline of specialized agents produce explanations that are both more readable and more faithful than a single well-prompted LLM, and which agents contribute most to each goal?
+> Does a pipeline of specialized agents produce explanations that are both more readable and more faithful than a single well-prompted LLM, and which agents actually matter for each goal?
+
+---
 
 ## Project Objectives
 
 The project aims to:
 
-- Develop a multi-agent pipeline for transforming complex medical text into patient-friendly explanations.
-- Preserve factual faithfulness to the original clinical information.
-- Detect unsupported claims, omissions, and inaccuracies in AI-generated explanations.
-- Compare the multi-agent pipeline against a single-LLM baseline.
-- Evaluate the contribution of individual agents through ablation studies.
-- Examine trade-offs between readability, factual faithfulness, latency, and computational cost.
+- Develop a multi-agent pipeline for generating patient-friendly medical explanations.
+- Preserve the factual meaning of the original medical information.
+- Identify unsupported claims, omissions, and inaccuracies in generated explanations.
+- Compare the multi-agent system against a single-LLM baseline.
+- Investigate the contribution of individual agents through ablation experiments.
+- Evaluate trade-offs between readability, factual faithfulness, latency, and computational cost.
+
+---
 
 ## System Architecture
 
-The proposed FaithfulMed architecture consists of five specialized agents working together.
+The FaithfulMed project proposes a pipeline consisting of five specialized AI agents.
 
-| Agent | Responsibility |
+| Agent | Role |
 |---|---|
-| **Extractor** | Extracts important clinical facts from the source medical document. |
-| **Simplifier** | Uses plain-language rewriting and retrieval-augmented generation to simplify medical terminology. |
-| **Verifier** | Evaluates generated explanations for factual faithfulness, omissions, and unsupported information. |
+| **Extractor** | Identifies and extracts important clinical facts from the source document. |
+| **Simplifier** | Translates complex medical terminology into more accessible language using retrieval-augmented generation. |
+| **Verifier** | Evaluates generated explanations for factual faithfulness, omissions, and unsupported claims. |
 | **Refiner** | Revises explanations based on issues identified during verification. |
-| **Readability** | Evaluates and improves the accessibility of the generated explanations. |
+| **Readability** | Evaluates and improves the accessibility of the final explanation. |
+
+### Proposed Pipeline
+
+**Clinical Document → Extractor → Simplifier → Verifier → Refiner → Readability → Patient-Friendly Explanation**
 
 The reference architecture uses Google's Agent Development Kit (ADK), with a sequential workflow and a bounded refinement loop between the Verifier and Refiner.
 
-The project also investigates how individual agents affect system performance through controlled experiments.
+The project investigates how these specialized components contribute to the overall quality of generated medical explanations.
+
+---
 
 ## My Individual Contributions
 
-As a Break Through Tech AI Fellow, I contributed to the development and evaluation of FaithfulMed, focusing on data exploration, verification, baseline development, and ablation analysis.
+As a Break Through Tech AI Fellow, I have contributed to the development and evaluation of FaithfulMed through exploratory data analysis, AI agent development, baseline implementation, and experimental design.
 
 ### 1. Exploratory Data Analysis
 
-Conducted exploratory data analysis to understand the datasets supporting the project's medical text generation and evaluation tasks.
+Conducted exploratory data analysis to better understand the datasets supporting the project's medical text generation and evaluation tasks.
 
-This work contributed to understanding the available data and its relevance to the development and assessment of the FaithfulMed pipeline.
+This work helped establish an understanding of the available data and its relevance to the system's development and evaluation.
 
 ### 2. Verifier Agent Development
 
-Developed a Verifier agent designed to assess whether generated medical explanations remain faithful to their source information.
+Worked on developing the **Verifier agent**, a component designed to evaluate whether AI-generated medical explanations remain faithful to the original source information.
 
-The Verifier focuses on identifying potential issues such as:
+The Verifier is intended to identify:
 
-- Unsupported medical claims.
-- Information that is inconsistent with the original source.
-- Omission of important clinical details.
-- Additional information not supported by the source text.
+- Unsupported or potentially hallucinated medical claims.
+- Information inconsistent with the original clinical document.
+- Omission of important medical details.
+- Additional claims that are not supported by the source.
 
-The project's verification approach uses LLM-based faithfulness evaluation, with human-annotated medical data identified as a reference for calibration.
-
-This contribution focused on the reliability of AI-generated explanations, an important consideration when applying generative AI to healthcare information.
+This work focuses on the challenge of improving the factual reliability of generative AI systems in healthcare applications.
 
 ### 3. Baseline Pipeline Development
 
-Created a baseline pipeline to establish a reference point for evaluating the multi-agent approach.
+Created a baseline pipeline to establish a reference point for evaluating the multi-agent system.
 
-The baseline enables comparisons between a simpler LLM-based generation process and the proposed multi-agent system.
+The baseline supports comparisons between a simpler LLM-based approach and the multi-agent architecture, helping investigate whether additional specialized agents provide measurable improvements.
 
-This work supports the project's central research question by providing a comparison against which the value of additional specialized agents can be assessed.
+### 4. Verifier Ablation Study
 
-### 4. Ablation Study: Removing the Verifier Agent
+Developed an ablation version of the pipeline that removes the Verifier agent.
 
-Developed an ablation version of the pipeline without the Verifier agent.
+The purpose of this experiment is to investigate the Verifier's contribution to the overall system by comparing pipeline behavior with and without verification.
 
-The purpose of this experiment was to isolate the Verifier's contribution and investigate how removing verification affects system behavior.
+This work supports the project's broader research goal of understanding which agents are most important for factual faithfulness and readability.
 
-The experiment was designed to support comparisons between:
+---
 
-- The complete multi-agent pipeline.
-- A pipeline without the Verifier agent.
+## Datasets and Data Exploration
 
-This work contributes to understanding the importance of verification within multi-agent AI systems.
+The FaithfulMed challenge identifies several publicly available, de-identified, synthetic, and expert-curated datasets for medical text simplification and evaluation.
 
-## Datasets
-
-The FaithfulMed challenge identifies several datasets for medical text simplification, retrieval, and evaluation.
-
-| Dataset | Intended Role |
+| Dataset | Intended Use |
 |---|---|
 | **MedAESQA** | Faithfulness evaluation and Verifier calibration using human-annotated judgments. |
-| **MTSamples** | De-identified clinical reports for medical text simplification. |
-| **PLABA** | Biomedical text and corresponding plain-language adaptations. |
+| **MTSamples** | De-identified medical reports for text simplification. |
+| **PLABA** | Biomedical text paired with plain-language adaptations. |
 | **MedQuAD** | Consumer health questions and answers for grounding and evaluation. |
 | **Synthea** | Synthetic patient records for testing clinical document workflows. |
-| **MedlinePlus** | Lay-language medical terminology for retrieval-augmented generation. |
+| **MedlinePlus** | Plain-language medical terminology for retrieval-augmented generation. |
 
-These are the datasets identified in the project challenge. Their inclusion here does not imply that every dataset was used in each experiment.
+These datasets are identified in the official project challenge. Not all datasets are necessarily used in every experiment.
 
-The project emphasizes the use of publicly available, de-identified, synthetic, or expert-curated data rather than identifiable patient information.
+### Data Exploration
+
+My exploratory data analysis focused on understanding the data available for the project and how it could support the development and evaluation of the FaithfulMed system.
+
+Additional exploratory visualizations and dataset-specific findings will be documented as the project progresses.
+
+---
 
 ## Technical Approach
 
-The project combines several techniques for developing and evaluating trustworthy generative AI systems.
+FaithfulMed investigates several techniques for developing trustworthy AI-generated medical explanations.
 
 ### Multi-Agent Orchestration
 
-The reference architecture uses Google's Agent Development Kit to coordinate specialized agents responsible for extraction, simplification, verification, refinement, and readability.
+The proposed system uses Google's Agent Development Kit (ADK) to coordinate specialized agents responsible for extraction, simplification, verification, refinement, and readability.
 
 ### Retrieval-Augmented Generation
 
-The proposed system incorporates retrieval from authoritative health information resources to support explanations grounded in medical terminology and source material.
+The architecture incorporates retrieval from authoritative medical information resources to support source-grounded explanations.
 
 ### Faithfulness Verification
 
-The Verifier evaluates whether generated explanations are supported by the original medical information.
+The Verifier evaluates whether generated explanations are supported by the original clinical information.
 
-The project proposes using human-annotated evidence-support judgments to assess the quality of automated verification.
+The project's evaluation plan uses human-annotated evidence-support judgments as a reference for assessing verification quality.
 
 ### Baseline Comparison
 
-A single-LLM approach provides a reference for determining whether a more complex multi-agent architecture offers measurable improvements.
+A single-LLM baseline provides a reference for evaluating the benefits and limitations of the multi-agent architecture.
 
 ### Ablation Analysis
 
-Ablation studies investigate the contribution of individual agents by removing components and comparing the resulting system behavior.
+Ablation experiments investigate the role of individual components by removing agents and examining changes in system performance.
 
-My ablation work focused specifically on removing the Verifier.
+My ablation work specifically focuses on the pipeline without the Verifier.
+
+---
 
 ## Evaluation Framework
 
-The project challenge defines several evaluation dimensions:
+The project evaluates system performance across several dimensions.
 
-| Evaluation Dimension | Metric or Approach |
+| Evaluation Dimension | Proposed Metric or Approach |
 |---|---|
-| Readability | Flesch-Kincaid Grade Level and SMOG |
-| Faithfulness | Agreement with human-annotated evidence-support judgments |
-| Verifier Reliability | Accuracy and Cohen's kappa |
-| Hallucination | Unsupported or clinically meaningful inaccurate claims |
-| Agent Contribution | Ablation comparisons |
-| System Efficiency | Latency and computational cost |
+| **Readability** | Flesch-Kincaid Grade Level and SMOG |
+| **Faithfulness** | Agreement with human-annotated evidence-support judgments |
+| **Verifier Reliability** | Accuracy and Cohen's kappa |
+| **Hallucination** | Frequency of unsupported or clinically meaningful inaccurate claims |
+| **Agent Contribution** | Ablation comparisons |
+| **System Efficiency** | Latency and computational cost |
 
 ### Project Performance Targets
 
-The official challenge establishes the following targets:
+The official project challenge defines the following targets:
 
 - At least **80%** of outputs at or below an eighth-grade reading level.
 - At least **85%** factual fidelity on the human-annotated test set.
-- Fewer than **10%** of outputs containing a clinically meaningful unsupported claim.
+- Fewer than **10%** of outputs containing clinically meaningful unsupported claims.
 - At least **15 percentage points** of improvement in faithfulness compared with the single-agent baseline.
-- At least **80%** agreement between the Verifier and human annotators, with a target Cohen's kappa of at least **0.6**.
+- At least **80%** agreement between the Verifier and human annotators, with a target Cohen's kappa of **0.6 or higher**.
 
-**These are project goals, not reported experimental results.**
+**Note:** These are the project's intended success criteria, not completed experimental results.
 
-## Results and Findings
+---
 
-The completed experimental results are not included in the project documents used to prepare this README.
+## Results and Ongoing Evaluation
 
-The baseline and Verifier ablation were developed to investigate the following questions:
+**Status: Evaluation in progress**
 
-1. How does the multi-agent approach compare with a baseline pipeline?
+FaithfulMed is currently under active development. The team is continuing to develop and evaluate the multi-agent system, and final experimental results are not yet available for reporting.
+
+The evaluation focuses on understanding whether specialized agents improve the readability and factual faithfulness of generated medical explanations compared with a single-LLM baseline.
+
+### Current Contributions
+
+My completed development work includes:
+
+- Exploratory data analysis supporting the project.
+- Development of the Verifier agent.
+- Implementation of a baseline pipeline for comparison.
+- Development of a pipeline variant without the Verifier for ablation analysis.
+
+### Evaluation Questions
+
+The ongoing experiments aim to investigate:
+
+1. How does the complete multi-agent system compare with the baseline pipeline?
 2. How does removing the Verifier affect the factual faithfulness of generated explanations?
-3. What trade-offs emerge between readability and faithfulness?
+3. Does verification introduce trade-offs in readability or system efficiency?
+4. Which components contribute most to producing accurate, patient-friendly explanations?
 
-Quantitative findings, experimental tables, and visualizations should be added from the team's actual evaluation outputs.
+### Planned Results and Visualizations
 
-## Project Setup and Reproduction
+As experimental evaluation progresses, this section will be updated with:
 
-The original team repository contains the project implementation and an experimental Streamlit pipeline visualizer.
+- **Baseline vs. Multi-Agent Comparison:** Faithfulness and readability scores across pipeline configurations.
+- **Verifier Ablation Results:** A comparison of the complete pipeline and the pipeline without the Verifier.
+- **Readability Analysis:** Flesch-Kincaid and other readability metrics.
+- **Faithfulness Evaluation:** Results comparing automated verification against human-annotated judgments.
+- **Experimental Summary:** Tables and visualizations documenting observed performance differences.
 
-For setup instructions, see:
+Final conclusions will be reported after the experiments are completed and evaluated.
+
+---
+
+## Setup and Installation
+
+The original FaithfulMed team repository contains the project implementation, supporting files, and an experimental Streamlit pipeline visualizer.
+
+For the available setup instructions, refer to:
 
 - [Original FaithfulMed Repository](https://github.com/Break-Through-Tech/Google-2E-faithfulmed-a-multi-agent-system-for-faithful-patient-friendly-medical-explanations)
 - [Streamlit Setup and Demo Guide](https://github.com/Break-Through-Tech/Google-2E-faithfulmed-a-multi-agent-system-for-faithful-patient-friendly-medical-explanations/blob/main/DEMO.md)
 
-The demo guide covers dependencies, API key configuration, a prepared Chroma database, and platform-specific commands.
+The demo guide describes dependencies, API key configuration, the prepared Chroma database, and platform-specific commands.
 
-The original team README notes that the Streamlit visualizer is an experimental prototype and should not be used for medical advice.
+The project visualizer is an experimental prototype and is **not intended to provide medical advice**. Only fictional or approved de-identified medical notes should be used. Submitted text is sent to the configured model provider.
 
-Only fictional or approved de-identified medical notes should be submitted. Text entered into the visualizer is sent to the configured model provider.
+Detailed reproduction instructions for the baseline and ablation experiments will be added after the corresponding workflows have been verified.
+
+---
 
 ## Future Work
 
-Potential directions identified by the project include:
+As development and evaluation continue, potential next steps include:
 
-- Further calibrating the Verifier against human-annotated faithfulness labels.
-- Expanding ablation studies to investigate the contributions of other agents.
-- Comparing Gemini, Gemma, and an additional open model.
-- Analyzing hallucination patterns across different types of medical information.
-- Investigating the relationship between readability and factual faithfulness.
-- Exploring multilingual medical explanations.
-- Improving transparency through evidence attribution and agent-level traces.
+- Completing quantitative comparisons between the baseline and multi-agent pipelines.
+- Evaluating the Verifier's effectiveness in identifying unsupported medical claims.
+- Analyzing the impact of removing the Verifier through ablation experiments.
+- Investigating additional agent ablations.
+- Comparing performance across different LLMs.
+- Examining trade-offs between readability, factual faithfulness, latency, and cost.
+- Improving the transparency of generated explanations through evidence attribution.
+- Exploring multilingual patient-friendly medical explanations.
+
+---
 
 ## Skills and Experience
 
-My work on FaithfulMed provided practical experience in:
+Through my contributions to FaithfulMed, I have gained experience in:
 
 - Exploratory Data Analysis
 - Generative AI and Large Language Models
-- Multi-Agent Systems
+- Multi-Agent AI Systems
 - AI Agent Development
 - Baseline Pipeline Development
 - Ablation Studies
 - Experimental Design
-- AI
+- AI System Evaluation
+- Healthcare Natural Language Processing
+- Collaborative Software Development
 
+---
+
+## Acknowledgments
+
+FaithfulMed is a collaborative project developed through **Break Through Tech AI Studio in partnership with Google**.
+
+I would like to acknowledge my fellow AI Studio team members, our AI Studio Coach **Jenna Hunte**, our Challenge Advisor **Samaneh Kazemi Nafchi**, and the Break Through Tech community for their guidance and contributions.
+
+This personal repository highlights my individual contributions while recognizing the work of the full team.
+
+**Original Team Repository:** [FaithfulMed — Break Through Tech / Google 2E](https://github.com/Break-Through-Tech/Google-2E-faithfulmed-a-multi-agent-system-for-faithful-patient-friendly-medical-explanations)
+
+---
+
+*FaithfulMed is an educational and research project exploring trustworthy AI-generated medical explanations. It is not intended to provide medical advice or replace professional clinical judgment.*
